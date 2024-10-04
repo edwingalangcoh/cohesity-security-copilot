@@ -15,7 +15,7 @@ paths:
             summary: Returns the provided headers
             parameters:
                 - in: header
-                apiKey: x-test-api-key
+                    apiKey: x-test-api-key
             responses:
                 200:
                     description: Successful request.
