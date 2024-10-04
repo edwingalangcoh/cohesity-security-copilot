@@ -1,9 +1,9 @@
 Descriptor:
-  Name: ApiKeyAuth
-  DisplayName: httpbin.org - API Key Authentication
-  Description: Plugin for making example http requests
-  SupportedAuthTypes:
-    - ApiKey
+	Name: ApiKeyAuth
+	DisplayName: httpbin.org - API Key Authentication
+	Description: Plugin for making example http requests
+	SupportedAuthTypes:
+  	- ApiKey
   Authorization:
     Type: APIKey
     Key: x-test-api-key
