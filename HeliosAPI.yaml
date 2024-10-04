@@ -1,9 +1,21 @@
 openapi: 3.0.0
 
 info:
-    title: httpbin.org
-    description: A simple HTTP Request & Response Service.
-    version: "0.9.2"
+    title: helios
+    description: A simple HTTPs Request & Response Service.
+    version: "1.0"
+
+# 1) Define the key name and location
+components:
+  securitySchemes:
+    ApiKeyAuth: # arbitrary name for the security scheme
+      type: apiKey
+      in: header # can be "header", "query" or "cookie"
+      name: apiKey # name of the header, query parameter or cookie
+
+# 2) Apply the API key globally to all operations
+security:
+  - ApiKeyAuth: [] # use the same name as under securitySchemes
 
 servers:
     - url: https://helios.cohesity.com
@@ -13,9 +25,8 @@ paths:
         get: 
             operationId: TestApiKeyAuth
             summary: Returns the provided headers
-            parameters:
-                - in: header
-                    apiKey: x-test-api-key
+            security:
+                - ApiKeyAuth []
             responses:
                 200:
                     description: Successful request.
