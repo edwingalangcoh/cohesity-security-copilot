@@ -30,9 +30,17 @@ paths:
             responses:
                 "200":
                 description: Successful request.
-                content:
-                    application/json:
+                "401":
+                    $ref: "#/components/responses/UnauthorizedError"
 
+components:
+  responses:
+    UnauthorizedError:
+      description: API key is missing or invalid
+      headers:
+        WWW_Authenticate:
+          schema:
+            type: string
     #/v2/mcm/data-protect/sources:
     #    get: 
     #        operationId: TestApiKeyAuth
