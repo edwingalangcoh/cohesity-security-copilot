@@ -1,0 +1,52 @@
+openapi: 3.0.0
+
+info:
+    title: helios
+    description: A simple HTTPs Request & Response Service.
+    version: "1.0"
+
+# 1) Define the key name and location
+components:
+  securitySchemes:
+    ApiKeyAuth: # arbitrary name for the security scheme
+      type: apiKey
+      in: header # can be "header", "query" or "cookie"
+      name: apiKey # name of the header, query parameter or cookie
+
+# 2) Apply the API key globally to all operations
+security:
+  - ApiKeyAuth: [] # use the same name as under securitySchemes
+
+servers:
+    - url: https://helios.cohesity.com
+
+paths:
+    /irisservices/api/v1/mcm/userInfo:
+        get:
+            operationId: GetTenantId
+            summary: Get TenantId of user
+            security:
+                - ApiKeyAuth []
+            responses:
+                "200":
+                description: Successful request.
+                "401":
+                    $ref: "#/components/responses/UnauthorizedError"
+
+components:
+  responses:
+    UnauthorizedError:
+      description: API key is missing or invalid
+      headers:
+        WWW_Authenticate:
+          schema:
+            type: string
+    #/v2/mcm/data-protect/sources:
+    #    get: 
+    #        operationId: TestApiKeyAuth
+    #        summary: Returns the provided headers
+    #        security:
+    #            - ApiKeyAuth []
+    #        responses:
+    #            200:
+    #                description: Successful request.
