@@ -21,12 +21,24 @@ servers:
     - url: https://helios.cohesity.com
 
 paths:
-    /v2/mcm/data-protect/sources:
-        get: 
-            operationId: TestApiKeyAuth
-            summary: Returns the provided headers
+    /irisservices/api/v1/mcm/userInfo:
+        get:
+            operationId: GetTenantId
+            summary: Get TenantId of user
             security:
                 - ApiKeyAuth []
             responses:
-                200:
-                    description: Successful request.
+                "200":
+                description: Successful request.
+                content:
+                    application/json:
+
+    #/v2/mcm/data-protect/sources:
+    #    get: 
+    #        operationId: TestApiKeyAuth
+    #        summary: Returns the provided headers
+    #        security:
+    #            - ApiKeyAuth []
+    #        responses:
+    #            200:
+    #                description: Successful request.
